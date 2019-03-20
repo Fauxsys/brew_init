@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+BROWSERS="google-chrome firefox"
+TERMINAL="iterm2"
+IDE="pycharm"
+DEVELOPMENT="docker android-platform-tools"
+FLUX="flux"
+
+brew tap caskroom/cask
+brew cask install $BROWSERS $TERMINAL $IDE $DEVELOPMENT $FLUX
+
+CLI_TOOLS="htop bash gnu-sed screen ncdu mtr tree"
+PYTHON="python@2 python"
+DOWNLAOD_TOOL="aria2c"
+
+brew install $CLI_TOOLS $PYTHON $DOWNLOAD_TOOL

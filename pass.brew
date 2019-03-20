@@ -1,0 +1,10 @@
+#!/usr/bin/env bash 
+
+brew install pass gpg2
+gpg2 --quick-gen-key --yes "Desired-Username <desired@email.com>"
+pass init "desired@email.com"
+pass git init
+
+# Export and Import Password Store
+# gpg2 --export-secret-keys > secret.gpg
+# gpg2 --import /path/to/secret.gpg

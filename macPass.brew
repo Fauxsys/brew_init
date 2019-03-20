@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+MacPassBuild="$HOME/code/MacPassBuild"
+MacPass="$MacPassBuild/MacPass"
+MacPassHTTP="$MacPassBuild/MacPassHTTP"
+AppLocation="$HOME/Library/Developer/Xcode/DerivedData"
+
+# Setup
+if [ -d "$MacPassBuild" ]; then
+rm -rf $MacPassBuild
+fi
+
+if [ -d "$AppLocation" ]; then
+rm -rf "$AppLocation/*"
+fi
+
+brew install carthage
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer/
+sudo xcodebuild -license accept
+
+# Install
+# "Did you download XCode from App Store?"
+# "Did you open the XCode App to Install Additional Components?"
+
+git clone https://github.com/MacPass/MacPassHTTP $MacPassHTTP
+cd $MacPassHTTP
+carthage bootstrap --platform macOS
+git clone https://github.com/mstarke/MacPass $MacPass
+cd $MacPass
+git submodule update --init --recursive
+carthage bootstrap --platform macOS
+xcodebuild -scheme MacPass -target MacPass -configuration Release CODE_SIGNING_REQUIRED=NO NO_SPARKLE=NO_SPARKLE
+cd $MacPassHTTP
+xcodebuild
+
+# Return to CommandLineTools
+sudo xcode-select -s /Library/Developer/CommandLineTools
