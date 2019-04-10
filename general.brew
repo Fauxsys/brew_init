@@ -3,7 +3,7 @@
 BROWSERS="google-chrome firefox"
 TERMINAL="iterm2"
 IDE="pycharm"
-DEVELOPMENT="docker android-platform-tools"
+DEVELOPMENT="docker android-platform-tools jq"
 FLUX="flux"
 
 brew tap caskroom/cask
